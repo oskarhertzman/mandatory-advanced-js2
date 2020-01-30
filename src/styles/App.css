@@ -1,32 +1,16 @@
 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+  font-family: 'Montserrat';
 }
 
-.App-link {
-  color: #61dafb;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-* {padding: 0; margin: 0; box-sizing: border-box;}
 header {
-	background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+  font-family: 'Montserrat';
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -41,19 +25,17 @@ header .overlay{
 	height: 100%;
 	padding: 50px;
 	color: #FFF;
-	text-shadow: 1px 1px 1px #333;
+
   background-image: linear-gradient( 135deg, #9f05ff69 10%, #fd5e086b 100%);
 
 }
 
-h1 {
-	font-family: 'Dancing Script', cursive;
+header h1 {
 	font-size: 80px;
 	margin-bottom: 30px;
 }
 
-h3, p {
-	font-family: 'Open Sans', sans-serif;
+header h3, header p {
 	margin-bottom: 30px;
 }
 
@@ -71,14 +53,148 @@ button:hover{
 	cursor: pointer;
 }
 
-
-.movies {
-  margin-left: 50px;
-  margin-top: 30px;
+.wrapper {
+  text-align: center;
+  margin: 0 auto;
 }
 
+main {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+label {
+  color: grey;
+}
+
+.hrMain {
+    margin: 0 auto;
+    width: 90%;
+    overflow: visible;
+    height: 30px;
+    border-style: solid;
+    border-color: #9f05ff69;
+    border-width: 1.5px 0 0 0;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+.hrMain:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: #9f05ff69;
+    border-width: 0 0 1.5px 0;
+    border-radius: 20px;
+}
+
+
+.movies {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  margin-top: 50px;
+  color: grey;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.container h1 {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: bold;
+  padding-bottom: 50px;
+}
+
+.movieWrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  text-align: center;
+}
+
+
+.movieItem  {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: center;
+  height: 250px;
+}
+
+.movieItem:first-child {
+  border-width: 2px;
+  border-style: solid;
+  border-image:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      #9f05ff69,
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+}
+
+.movieItem:last-child {
+  border-width: 2px;
+  border-style: solid;
+  border-image:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      #9f05ff69,
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+}
+
+
+.movieItem h1 {
+  padding-bottom: -100px;
+}
+
+.movieItem p {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 300px;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.buttons {
+
+  margin-top: 90px;
+  margin-bottom: 90px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.buttons button {
+  background-color: #9f05ff69;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.buttons * {
+  color: white;
+}
+
+#search {
+  margin-top: 30px;
+  margin-left: 80px;
+}
+
+
 #searchbox {
-  margin-bottom: 30px;
+  color: grey;
+  border-style: none;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 .add {
   display: flex;
@@ -89,27 +205,51 @@ button:hover{
   height: 100vh;
 }
 
-
 .edit {
+  color: grey;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   flex-direction: column;
   justify-content: center;
-  height: 100vh
-}
-
-
-
-.add input {
-  margin: 20px;
+  height: 100vh;
 }
 
 .edit input {
+  padding: 3px;
+  color: grey;
+  border-style: none;
+  border: 1px solid grey;
+  border-radius: 10px;
   margin: 20px;
 }
+.details {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
 
-.movie {
-  margin-bottom: 150px;
+.details * {
+  max-width: 400px;
+  word-wrap: break-word;
+  margin-bottom: 50px;
+}
+
+.details button {
+  width: 100px;
+}
+
+.add input {
+  margin: 20px;
+  padding: 3px;
+  color: grey;
+  border-style: none;
+  border: 1px solid grey;
+  border-radius: 10px;
 }

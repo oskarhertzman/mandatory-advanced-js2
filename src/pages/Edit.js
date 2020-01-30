@@ -12,6 +12,8 @@ class Edit extends React.Component {
     this.state = {
 
       movie: {},
+      redirect: false,
+      error: 'none',
 
     }
     this.handleTitleEdit = this.handleTitleEdit.bind(this);
@@ -21,18 +23,10 @@ class Edit extends React.Component {
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
   }
 
-
-
   componentDidMount() {
-    console.log(this.props.match.params.id);
-
     const CancelToken = axios.CancelToken;
     this.source = CancelToken.source();
-
     getMovie(this.props.match.params.id, this.source).then((edMovie) => {
-
-      console.log(edMovie);
-      console.log(edMovie.data);
       this.setState({movie: edMovie.data})
 
     }).catch((err) => {
@@ -41,56 +35,53 @@ class Edit extends React.Component {
   }
 
   handleTitleEdit(e) {
-    console.log(e.target.value);
     let stateCopy = Object.assign({}, this.state);
     stateCopy.movie.title = e.target.value;
     this.setState(stateCopy);
-
   }
 
   handleDescEdit(e) {
-    console.log(e.target.value);
     let stateCopy = Object.assign({}, this.state);
     stateCopy.movie.description = e.target.value;
     this.setState(stateCopy);
   }
 
   handleDirEdit(e) {
-    console.log(e.target.value);
     let stateCopy = Object.assign({}, this.state);
     stateCopy.movie.director = e.target.value;
     this.setState(stateCopy);
   }
 
   handleRateEdit(e) {
-    console.log(e.target.value);
     let stateCopy = Object.assign({}, this.state);
     stateCopy.movie.rating = e.target.value;
     this.setState(stateCopy);
   }
-
 
   handleEditSubmit(e) {
     e.preventDefault();
     let id = this.props.match.params.id;
     let movie = this.state.movie;
     postEditMovie(id, movie).then((editMovie) => {
-      this.setState({redirect: true})
-      console.log(editMovie);
+      if(editMovie) {
+        this.setState({
+          error: 'none',
+          redirect: true,
+        })
+      }
+      else {
+        this.setState({error: 'inline'})
+      }
     }).catch((err) => {
     alert(err);
   });
-
   }
-
-
 
 render() {
   if (this.state.redirect) {
     return <Redirect to="/movies" />
   }
   return (
-
   <EditRender
   movie={this.state.movie}
   onTitleChange={this.handleTitleEdit}
@@ -98,6 +89,7 @@ render() {
   onDirChange={this.handleDirEdit}
   onRateChange={this.handleRateEdit}
   onMovieSubmit={this.handleEditSubmit}
+  error={this.state.error}
   />
 
   );

@@ -1,13 +1,24 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 
-const EditRender = ({movie, onTitleChange, onDescChange, onDirChange, onRateChange, onMovieSubmit}) => (
+const EditRender = ({movie, onTitleChange, onDescChange, onDirChange, onRateChange, onMovieSubmit, error}) => (
 
 
   <div className="App">
-
-  <form>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Edit</title>
+    </Helmet>
+    <header>
+      <div className="overlay">
+    <h1># Edit</h1>
+    <p>Edit the selected movie below</p>
+    <br></br>
+  </div>
+  </header>
   <form className ="edit" onSubmit={onMovieSubmit}>
     <div className="editmovie">
+    <p style={{display: error, fontWeight: 'bold', color: 'red'}} >Invalid input!</p>
     <h2> Title: </h2>
     <input type="text" placeholder="Title" value={movie.title} onChange={onTitleChange}/>
     <br></br>
@@ -20,9 +31,8 @@ const EditRender = ({movie, onTitleChange, onDescChange, onDirChange, onRateChan
     <h2> Rating: </h2>
     <input type="text" placeholder="Rating" value={movie.rating} onChange={onRateChange} />
     <br></br>
-    <button type="submit" className="movieSubmit" onSubmit={onMovieSubmit}> </button>
+    <button type="submit" className="movieSubmit" onSubmit={onMovieSubmit}>Update</button>
     </div>
-  </form>
   </form>
   </div>
 );

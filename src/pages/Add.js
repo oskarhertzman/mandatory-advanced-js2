@@ -1,8 +1,8 @@
 import React from 'react';
 import MovieSubmitRender from '../render/MovieSubmitRender.js'
 import { postMovie } from '../api/Apicalls.js';
+import {Redirect} from "react-router-dom";
 import '../styles/App.css';
-const axios = require('axios').default;
 
 class Add extends React.Component {
 
@@ -13,6 +13,8 @@ class Add extends React.Component {
       description: "",
       director: "",
       rating: "",
+      redirect: false,
+      error: 'none'
     }
 
     this.handleAddMovie = this.handleAddMovie.bind(this);
@@ -38,7 +40,19 @@ handleAddMovie (e) {
   };
 
   postMovie(movie).then((newMovie) => {
-  }).catch((err) => {
+    if (newMovie) {
+      this.setState({
+        error: 'none',
+        redirect: true
+      })
+    }
+    else {
+      this.setState({
+        error: 'inline',
+      })
+    }
+  })
+  .catch((err) => {
   alert(err);
 });
 }
@@ -59,16 +73,18 @@ handleRateChange(e) {
   this.setState({rating: e.target.value});
 }
 
-
-
 render() {
+  if (this.state.redirect) {
+    return  <Redirect to={'/movies'}></Redirect>
+  }
   return (
   <MovieSubmitRender
   onMovieSubmit={this.handleAddMovie}
   onTitleChange={this.handleTitleChange}
   onDescChange={this.handleDescChange}
   onDirChange={this.handleDirChange}
-  onRateChange={this.handleRateChange} />
+  onRateChange={this.handleRateChange}
+  error={this.state.error}/>
   );
   }
 }
